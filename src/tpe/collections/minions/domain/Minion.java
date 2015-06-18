@@ -77,6 +77,7 @@ public abstract class Minion {
 		        farbe, farbe == MinionFarbe.GELB ? "Mag Bananen" : "Nichts... grrr...");
 	}
 
+
     /**
      * @see java.lang.Object#hashCode()
      */
