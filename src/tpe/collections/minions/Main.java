@@ -60,7 +60,7 @@ public class Main {
      *
      * @return integer die Anzahl
      */
-    public static int getAnzahlGesamt(MinionIterable factory) {
+    public static int getAlleMD(MinionIterable factory) {
         int anzahl = 0;
         for (Minion m : factory) {
             anzahl++;
@@ -75,7 +75,7 @@ public class Main {
      *
      * @return integer die Anzahl
      */
-    public static int getGelbeMinionsMD(MinionIterable factory) {
+    public static int getGMD(MinionIterable factory) {
         int anzahl = 0;
         for (Minion n : factory) {
             if (n.getFarbe() == (MinionFarbe.GELB)) {
@@ -92,7 +92,7 @@ public class Main {
      *
      * @return integer die Anzahl
      */
-    public static int getVioletteMinionsMD(MinionIterable factory) {
+    public static int getVMD(MinionIterable factory) {
         int anzahl = 0;
         for (Minion n : factory) {
             if (n.getFarbe() == (MinionFarbe.VIOLETT)) {
@@ -109,7 +109,7 @@ public class Main {
      *
      * @return integer die Anzahl
      */
-    public static int getMinionsOD(MinionIterable factory) {
+    public static int getAlleOD(MinionIterable factory) {
 
         Set<Minion> set = new HashSet<Minion>();
 
@@ -127,7 +127,7 @@ public class Main {
      *
      * @return
      */
-    public static int getMinionsODGelb(MinionIterable factory) {
+    public static int getGOD(MinionIterable factory) {
         Set<Minion> set = new HashSet<Minion>();
 
         for (Minion n : factory) {
@@ -145,7 +145,7 @@ public class Main {
      *
      * @return
      */
-    public static int getMinionsODViolett(MinionIterable factory) {
+    public static int getVOD(MinionIterable factory) {
         Set<Minion> set = new HashSet<Minion>();
 
         for (Minion n : factory) {
@@ -201,18 +201,18 @@ public class Main {
         MinionIterable factory = new MinionIterable();
 
         // OHNE DUBLETTEN
-        int gesamtOD = getMinionsOD(factory);
-        int gelbOD = getMinionsODGelb(factory);
+        int gesamtOD = getAlleOD(factory);
+        int gelbOD = getGOD(factory);
         double gelbODP = berechneProzent(gesamtOD, gelbOD);
-        int violettOD = getMinionsODViolett(factory);
+        int violettOD = getVOD(factory);
         double violettODP = berechneProzent(gesamtOD, violettOD);
         double gelbviolettODV = verhaeltniss(gelbOD, violettOD);
 
         // MIT DUBLETTEN
-        int gesamtMD = getAnzahlGesamt(factory);
-        int gelbMD = getGelbeMinionsMD(factory);
+        int gesamtMD = getAlleMD(factory);
+        int gelbMD = getGMD(factory);
         double gelbMDP = berechneProzent(gesamtMD, gelbMD);
-        int violettMD = getVioletteMinionsMD(factory);
+        int violettMD = getVMD(factory);
         double violettMDP = berechneProzent(gesamtMD, violettMD);
         double gelbviolettMDV = verhaeltniss(gelbMD, violettMD);
 
