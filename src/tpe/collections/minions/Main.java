@@ -53,6 +53,11 @@ public class Main {
                 + "Fehler bei der Zählung: " + fehler + "\n");
     }
 
+    /**
+     * @param HaeufigkeitMinions Map (Key=occurence frequency, Value=List of Minions)
+     *
+     * @return String formatted occurency of Minions
+     */
     public static String outputStringZusatz(Map<Integer, List<Minion>> HaeufigkeitMinions) {
         String Ergebnis = "";
         for (Map.Entry<Integer, List<Minion>> entry : HaeufigkeitMinions.entrySet()) {
@@ -61,6 +66,14 @@ public class Main {
         return Ergebnis;
     }
 
+    /**
+     * Converts a list of Minions into a String with line break after each entry,
+     * which consists of pre and lastname of a minion
+     *
+     * @param Minions a List of Minions
+     *
+     * @return Formatted String with Vorname Nachname \n of the list
+     */
     public static String minionToString(List<Minion> Minions) {
         String Ergebnis = new String();
         for (Minion temp : Minions) {
