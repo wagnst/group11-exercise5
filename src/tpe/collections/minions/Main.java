@@ -53,7 +53,7 @@ public class Main {
                 + "Fehler bei der Zählung: " + fehler + "\n");
     }
 
-    public static String outputStringZusatz(List<Minion> HaeufigkeitMinions) {
+    public static String outputStringZusatz(Map<Integer,List<Minion>> HaeufigkeitMinions) {
         return null;
     }
 
@@ -200,6 +200,14 @@ public class Main {
         return (double) Math.round(a / b * 100) / 100;
     }
 
+    /**
+     * Holt alle Duplikate aus einer Liste von Minions, indem beim Einspeichern
+     * in ein Set ggf. ein duplikates Minion in eine Liste geschrieben wird
+     *
+     * @param factory Liste von Minions
+     *
+     * @return Liste von Minions die Duplikat sind
+     */
     public static List<Minion> getDuplikate(MinionIterable factory) {
 
         List<Minion> DuplikateMinions = new ArrayList<Minion>();
@@ -220,15 +228,44 @@ public class Main {
         return DuplikateMinions;
     }
 
+    /**
+     * Berechnet die Häufigkeit des Vorkommens in einer Liste
+     *
+     * @param Minions Liste von Minions
+     *
+     * @return Map mit Minion und dessen Anzahl an Vorkommnissen
+     */
     public static HashMap<Minion, Integer> berechneDuplikate(List<Minion> Minions) {
         HashMap<Minion,Integer> frequencymap = new HashMap<Minion,Integer>();
         for(Minion a : Minions){
             if(frequencymap.containsKey(a)) {
-                frequencymap.put(a, frequencymap.get(a)+2);
+                frequencymap.put(a, frequencymap.get(a)+1);
             }
-            else{ frequencymap.put(a, 2); }
+            else{ frequencymap.put(a, 1); }
         }
         return frequencymap;
+    }
+
+
+    /**
+     * Gruppiert Listen von Minions nach ihrer Häufigkeit an Vorkommnissen
+     * @param MinionMap Map aus Minion und der Häufigkeit
+     *
+     * @return Map mit Häufigkeit als Schlüssel und jeweils eine Liste an Minions
+     * deren Häufigkeit die des Schlüssels entspricht
+     */
+    public static Map<Integer,List<Minion>> gruppiereNachHaeufigkeit(HashMap<Minion, Integer> MinionMap) {
+        Map<Integer,List<Minion>> gruppierteMinions = new HashMap<Integer, List<Minion>>();
+        for(Map.Entry<Minion, Integer> entry : MinionMap.entrySet()) {
+            List<Minion> minions = gruppierteMinions.get(entry.getValue());
+            if (minions == null) {
+                minions = new ArrayList();
+                gruppierteMinions.put(entry.getValue(), minions);
+            }
+            minions.add(entry.getKey());
+        }
+
+        return gruppierteMinions;
     }
 
     public static void main(String[] args) {
@@ -262,6 +299,7 @@ public class Main {
         ));
 
         //Zusatz Aufgabe
-        System.out.println(berechneDuplikate(getDuplikate(factory)));
+        System.out.println(outputStringZusatz(gruppiereNachHaeufigkeit(
+                        berechneDuplikate(getDuplikate(factory)))));
     }
 }
