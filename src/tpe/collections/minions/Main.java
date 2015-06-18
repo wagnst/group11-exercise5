@@ -27,10 +27,11 @@ public class Main {
      *
      * @return Formatierter String mit allen wichtigen Infos
      */
-    public static String outputString(int gesamtOD, int gelbOD, double gelbeODP,
-                                      int violettOD, double violettODP, double gelbviolettODV, int gesamtMD,
-                                      int gelbMD, double gelbeMDP, int violettMD, double violettMDP,
-                                      double gelbviolettMDV, double fehler) {
+    public static String outputString(
+            int gesamtOD, int gelbOD, double gelbeODP,
+            int violettOD, double violettODP, double gelbviolettODV, int gesamtMD,
+            int gelbMD, double gelbeMDP, int violettMD, double violettMDP,
+            double gelbviolettMDV, double fehler) {
         /*
          * Ohne Dubletten: 1128
          * Minions 717 gelbe (64%) und 411 violett (36%),
