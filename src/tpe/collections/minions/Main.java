@@ -118,7 +118,7 @@ public class Main {
      * @return
      */
     public static int getMinionsODGelb(MinionIterable factory) {
-        Set<Minion> set = new HashSet<>();
+        Set<Minion> set = new HashSet<Minion>();
 
         for (Minion n : factory) {
             if (n.getFarbe() == MinionFarbe.GELB)
@@ -135,7 +135,7 @@ public class Main {
      * @return
      */
     public static int getMinionsODViolett(MinionIterable factory) {
-        Set<Minion> set = new HashSet<>();
+        Set<Minion> set = new HashSet<Minion>();
 
         for (Minion n : factory) {
             if (n.getFarbe() == MinionFarbe.VIOLETT)
