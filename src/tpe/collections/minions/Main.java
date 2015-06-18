@@ -27,9 +27,9 @@ public class Main {
      *
      * @return Formatierter String mit allen wichtigen Infos
      */
-    public static String outputString(int gesamtOD, int gelbOD, int gelbeODP,
-            int violettOD, int violettODP, double gelbviolettODV, int gesamtMD,
-            int gelbMD, int gelbeMDP, int violettMD, int violettMDP,
+    public static String outputString(int gesamtOD, int gelbOD, double gelbeODP,
+            int violettOD, double violettODP, double gelbviolettODV, int gesamtMD,
+            int gelbMD, double gelbeMDP, int violettMD, double violettMDP,
             double gelbviolettMDV, double fehler) {
         /*
          * Ohne Dubletten: 1128
@@ -156,8 +156,8 @@ public class Main {
      * @param wert wieviel prozent sind das?
      * @return integer den Prozentsatz
      */
-    public static int berechneProzent(int gesamt, int wert) {
-        return gesamt / 100 * wert;
+    public static double berechneProzent(double gesamt, double wert) {
+        return (gesamt / wert) * 100;
     }
 
     /**
@@ -167,11 +167,11 @@ public class Main {
      * @param ohneDupletten keine Dupletten enthalten
      * @return integer die Anzahl ohne Dupletten
      */
-    public static int berechneFehlerQuote(int gesamt, int ohneDupletten) {
+    public static double berechneFehlerQuote(double gesamt, double ohneDupletten) {
 
-        int tmp = gesamt - ohneDupletten;
+        double tmp = gesamt - ohneDupletten;
 
-        return gesamt / 100 * tmp;
+        return (gesamt / tmp) * 100;
     }
 
     /**
@@ -193,17 +193,17 @@ public class Main {
         // OHNE DUBLETTEN
         int gesamtOD = getMinionsOD(factory);
         int gelbOD = getMinionsODGelb(factory);
-        int gelbODP = berechneProzent(gesamtOD, gelbOD);
+        double gelbODP = berechneProzent(gesamtOD, gelbOD);
         int violettOD = getMinionsODViolett(factory);
-        int violettODP = berechneProzent(gesamtOD, violettOD);
+        double violettODP = berechneProzent(gesamtOD, violettOD);
         double gelbviolettODV = verhaeltniss(gelbOD, violettOD);
 
         // MIT DUBLETTEN
         int gesamtMD = getAnzahlGesamt(factory);
         int gelbMD = getGelbeMinionsMD(factory);
-        int gelbMDP = berechneProzent(gesamtMD, gelbMD);
+        double gelbMDP = berechneProzent(gesamtMD, gelbMD);
         int violettMD = getVioletteMinionsMD(factory);
-        int violettMDP =  berechneProzent(gesamtMD, violettMD);
+        double violettMDP =  berechneProzent(gesamtMD, violettMD);
         double gelbviolettMDV = verhaeltniss(gelbMD, violettMD);
 
         //FEHLER
