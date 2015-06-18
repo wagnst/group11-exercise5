@@ -1,22 +1,23 @@
 package tpe.collections.minions;
 
-import java.util.*;
-
 import tpe.collections.minions.domain.Minion;
 import tpe.collections.minions.domain.MinionFarbe;
 import tpe.collections.minions.domain.MinionIterable;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
     /**
      * Gibt einen String zur Ausgabe aller errechneten Werte zurück.
      *
-     * @param gesamtMD Minions mit Dubletten
+     * @param gesamtOD Minions ohne Dubletten
      * @param gelbOD Gelbe Minions ohne Dubletten
      * @param gelbeODP Gelbe Minions ohne Dubletten in Prozent
      * @param violettOD Violette Minions ohne Dubletten
      * @param violettODP Violette Minions ohne Dubletten in Prozent
      * @param gelbviolettODV Verhältnis Gelbe und Violette Minions
-     * @param gesamtOD Minions ohne Dubletten
+     * @param gesamtMD Minions mit Dubletten
      * @param gelbMD Gelbe Minions mit Dubletten
      * @param gelbeMDP Gelbe Minions mit Dubletten in Prozent
      * @param violettMD Violette Minions mit Dubletten
@@ -31,10 +32,13 @@ public class Main {
             int gelbMD, int gelbeMDP, int violettMD, int violettMDP,
             double gelbviolettMDV, double fehler) {
         /*
-         * Ohne Dubletten: 1128 Minions 717 gelbe (64%) und 411 violett (36%),
-         * gelb/violett 1,74 -------------------------------------------------
+         * Ohne Dubletten: 1128
+         * Minions 717 gelbe (64%) und 411 violett (36%),
+         * gelb/violett 1,74
+         * -------------------------------------------------
          * Mit Dubletten: 1184 Minions 758 gelbe (64%) und 426 violett (36%),
-         * gelb/violett 1,78 -------------------------------------------------
+         * gelb/violett 1,78
+         * -------------------------------------------------
          * Fehler bei der Zählung: 4,7%
          */
         return ("Ohne Dubletten: " + gesamtOD + " Minions\n" + gelbOD
@@ -102,7 +106,7 @@ public class Main {
      */
     public static int getMinionsOD(MinionIterable factory) {
 
-        Set<Minion> set = new HashSet<>();
+        Set<Minion> set = new HashSet<Minion>();
 
         for (Minion n : factory) {
             set.add(n);
@@ -185,8 +189,31 @@ public class Main {
     public static void main(String[] args) {
 
         MinionIterable factory = new MinionIterable();
-        
-        //System.out.println(outputString());
+
+        // OHNE DUBLETTEN
+        int gesamtOD = getMinionsOD(factory);
+        int gelbOD = getMinionsODGelb(factory);
+        int gelbODP = berechneProzent(gesamtOD, gelbOD);
+        int violettOD = getMinionsODViolett(factory);
+        int violettODP = berechneProzent(gesamtOD, violettOD);
+        double gelbviolettODV = verhaeltniss(gelbOD, violettOD);
+
+        // MIT DUBLETTEN
+        int gesamtMD = getAnzahlGesamt(factory);
+        int gelbMD = getGelbeMinionsMD(factory);
+        int gelbMDP = berechneProzent(gesamtMD, gelbMD);
+        int violettMD = getVioletteMinionsMD(factory);
+        int violettMDP =  berechneProzent(gesamtMD, violettMD);
+        double gelbviolettMDV = verhaeltniss(gelbMD, violettMD);
+
+        //FEHLER
+        double fehler = berechneFehlerQuote(gesamtMD, gesamtOD);
+
+        System.out.println(outputString(
+                gesamtOD, gelbOD, gelbODP, violettOD, violettODP, gelbviolettODV,
+                gesamtMD, gelbMD, gelbMDP, violettMD, violettMDP, gelbviolettMDV,
+                fehler
+        ));
 
     }
 }
