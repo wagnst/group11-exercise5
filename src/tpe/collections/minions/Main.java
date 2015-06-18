@@ -3,9 +3,9 @@ package tpe.collections.minions;
 import tpe.collections.minions.domain.Minion;
 import tpe.collections.minions.domain.MinionFarbe;
 import tpe.collections.minions.domain.MinionIterable;
+import tpe.collections.minions.domain.MinionsComparator;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     /**
@@ -196,6 +196,38 @@ public class Main {
         return (double) Math.round(a / b * 100) / 100;
     }
 
+    public static Map<Integer,Minion> calculateDuplicates(MinionIterable factory) {
+
+        List<Minion> DuplikateMinions = new ArrayList<Minion>();
+        Map<Integer,Minion> ErgebnisListe = new HashMap<Integer,Minion>();
+        Set<Minion> set = new HashSet<Minion>();
+        int Anzahl = 0;
+
+        //Duplicate löschen (Set
+        //Kopiere original in MitDuplikate
+        for (Minion n : factory) {
+            //wenn nicht ins set => Duplikat
+            if (!set.add(n)) DuplikateMinions.add(n);
+            set.add(n);
+        }
+
+        //Sortiere nach Evil Number
+        DuplikateMinions.sort(new MinionsComparator());
+
+        for (int i = 0; i < DuplikateMinions.size(); i++) {
+            for (int j = 0; j < DuplikateMinions.size(); j++) {
+                if (DuplikateMinions.get(i).equals(DuplikateMinions.get(j))){
+                    Anzahl++;
+                }
+            }
+            ErgebnisListe.put(Anzahl,DuplikateMinions.get(i));
+            Anzahl = 0;
+        }
+
+        return ErgebnisListe;
+
+    }
+
     public static void main(String[] args) {
 
         MinionIterable factory = new MinionIterable();
@@ -219,11 +251,20 @@ public class Main {
         //FEHLER
         double fehler = berechneFehlerQuote(gesamtMD, gesamtOD);
 
+        //ZUSATZ
+        Map<Integer,Minion> ErgebnisListe = new HashMap<Integer,Minion>();
+
+        //Standard Aufgabe
         System.out.println(outputString(
                 gesamtOD, gelbOD, gelbODP, violettOD, violettODP, gelbviolettODV,
                 gesamtMD, gelbMD, gelbMDP, violettMD, violettMDP, gelbviolettMDV,
                 fehler
         ));
+
+        //Zusatz Aufgabe
+        ErgebnisListe = calculateDuplicates(factory);
+
+        System.out.println(ErgebnisListe);
 
     }
 }
