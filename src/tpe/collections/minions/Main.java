@@ -130,10 +130,21 @@ public class Main {
         return gesamt / 100 * tmp;
     }
 
+    /**
+     * Ermittelt das Verhältnis von a zu b
+     * 
+     * @param a erster Parameter
+     * @param b zweiter Parameter
+     * @return double das Verhältnis von a zu b
+     */
+    public static double verhaeltniss(int a, int b) {
+
+        return (double) a / b;
+    }
+
     public static void main(String[] args) {
 
         MinionIterable factory = new MinionIterable();
 
-        System.out.println(berechneFehlerQuote(100, 75));
     }
 }
