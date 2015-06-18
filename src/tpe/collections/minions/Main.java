@@ -42,13 +42,13 @@ public class Main {
          * Fehler bei der Zählung: 4,7%
          */
         return ("Ohne Dubletten: " + gesamtOD + " Minions\n" + gelbOD
-                + " gelbe (" + gelbeODP + ") und " + violettOD + "violett ("
-                + violettODP + "), gelb/violett " + gelbviolettODV + "\n"
-                + "-------------------------------------------------"
-                + "Mit Dubletten: " + gesamtMD + "Minions\n" + gelbMD
-                + " gelbe (" + gelbeMDP + ") und " + violettMD + "violett ("
-                + violettMDP + "), gelb/violett " + gelbviolettMDV + "\n"
-                + "-------------------------------------------------"
+                + " gelbe (" + gelbeODP + "%) und " + violettOD + " violett ("
+                + violettODP + "%), gelb/violett " + gelbviolettODV + "\n"
+                + "-------------------------------------------------\n"
+                + "Mit Dubletten: " + gesamtMD + " Minions\n" + gelbMD
+                + " gelbe (" + gelbeMDP + "%) und " + violettMD + " violett ("
+                + violettMDP + "%), gelb/violett " + gelbviolettMDV + "\n"
+                + "-------------------------------------------------\n"
                 + "Fehler bei der Zählung: " + fehler + "\n");
     }
 
