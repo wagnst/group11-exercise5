@@ -1,13 +1,9 @@
 package tpe.collections.minions.domain;
 
+import java.util.*;
+
 import static tpe.collections.minions.domain.MinionNamen.NACHNAME;
 import static tpe.collections.minions.domain.MinionNamen.VORNAMEN;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
 /**
  * Factory, um Minions zu erzeugen.
