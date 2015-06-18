@@ -116,9 +116,24 @@ public class Main {
         return gesamt / 100 * wert;
     }
 
+    /**
+     * Berechnet Differenz zweier Werte in Prozent
+     * 
+     * @param gesamt alle zusammen
+     * @param ohneDupletten keine Dupletten enthalten
+     * @return integer die Anzahl ohne Dupletten
+     */
+    public static int berechneFehlerQuote(int gesamt, int ohneDupletten) {
+
+        int tmp = gesamt - ohneDupletten;
+
+        return gesamt / 100 * tmp;
+    }
+
     public static void main(String[] args) {
 
         MinionIterable factory = new MinionIterable();
 
+        System.out.println(berechneFehlerQuote(100, 75));
     }
 }
