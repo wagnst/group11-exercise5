@@ -26,8 +26,8 @@ public class Main {
      *
      * @return Formatierter String mit allen wichtigen Infos
      */
-    public static String outputString(int gesamtMD, int gelbOD, int gelbeODP,
-            int violettOD, int violettODP, double gelbviolettODV, int gesamtOD,
+    public static String outputString(int gesamtOD, int gelbOD, int gelbeODP,
+            int violettOD, int violettODP, double gelbviolettODV, int gesamtMD,
             int gelbMD, int gelbeMDP, int violettMD, int violettMDP,
             double gelbviolettMDV, double fehler) {
         /*
