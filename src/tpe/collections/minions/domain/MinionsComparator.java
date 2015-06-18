@@ -10,7 +10,7 @@ import java.util.Comparator;
  */
 
 public class MinionsComparator implements Comparator<Minion> {
-   
+
     @Override
     public int compare(Minion o1, Minion o2) {
         if (o1.equals(o2)) {

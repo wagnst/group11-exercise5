@@ -53,6 +53,10 @@ public class Main {
                 + "Fehler bei der Zählung: " + fehler + "\n");
     }
 
+    public static String outputStringZusatz(List<Minion> HaeufigkeitMinions) {
+        return null;
+    }
+
     /**
      * ermittelt Gesamtanzahl Minions
      *
@@ -196,10 +200,9 @@ public class Main {
         return (double) Math.round(a / b * 100) / 100;
     }
 
-    public static Map<Integer,Minion> calculateDuplicates(MinionIterable factory) {
+    public static List<Minion> getDuplikate(MinionIterable factory) {
 
         List<Minion> DuplikateMinions = new ArrayList<Minion>();
-        Map<Integer,Minion> ErgebnisListe = new HashMap<Integer,Minion>();
         Set<Minion> set = new HashSet<Minion>();
         int Anzahl = 0;
 
@@ -214,18 +217,18 @@ public class Main {
         //Sortiere nach Evil Number
         DuplikateMinions.sort(new MinionsComparator());
 
-        for (int i = 0; i < DuplikateMinions.size(); i++) {
-            for (int j = 0; j < DuplikateMinions.size(); j++) {
-                if (DuplikateMinions.get(i).equals(DuplikateMinions.get(j))){
-                    Anzahl++;
-                }
+        return DuplikateMinions;
+    }
+
+    public static HashMap<Minion, Integer> berechneDuplikate(List<Minion> Minions) {
+        HashMap<Minion,Integer> frequencymap = new HashMap<Minion,Integer>();
+        for(Minion a : Minions){
+            if(frequencymap.containsKey(a)) {
+                frequencymap.put(a, frequencymap.get(a)+2);
             }
-            ErgebnisListe.put(Anzahl,DuplikateMinions.get(i));
-            Anzahl = 0;
+            else{ frequencymap.put(a, 2); }
         }
-
-        return ErgebnisListe;
-
+        return frequencymap;
     }
 
     public static void main(String[] args) {
@@ -251,9 +254,6 @@ public class Main {
         //FEHLER
         double fehler = berechneFehlerQuote(gesamtMD, gesamtOD);
 
-        //ZUSATZ
-        Map<Integer,Minion> ErgebnisListe = new HashMap<Integer,Minion>();
-
         //Standard Aufgabe
         System.out.println(outputString(
                 gesamtOD, gelbOD, gelbODP, violettOD, violettODP, gelbviolettODV,
@@ -262,9 +262,6 @@ public class Main {
         ));
 
         //Zusatz Aufgabe
-        ErgebnisListe = calculateDuplicates(factory);
-
-        System.out.println(ErgebnisListe);
-
+        System.out.println(berechneDuplikate(getDuplikate(factory)));
     }
 }
